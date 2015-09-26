@@ -140,8 +140,8 @@ public class Game {
 	    
 	    Collections.reverse(players); //makes it descending order
 	    
+	    System.out.println("Winners in Ascending Order: ");
 	    for (int i = 0; i < players.size(); i++){
-	    	System.out.println("Winners in Ascending Order: ");
 	    	System.out.println((i+1) + ": " + players.get(i).getID() + "\n"); 
 	    }
 	}

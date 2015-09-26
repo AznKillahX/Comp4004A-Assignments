@@ -10,6 +10,8 @@ public class HandTest {
 	public void test() {
 		Card[] c = new Card[5];
 	
+		
+		// Tests for SINGLE HANDS only no comparisons made
 		c[0] = new Card(1,1);
 		c[1] = new Card(1,2);
 		c[2] = new Card(2,3);
@@ -141,6 +143,10 @@ public class HandTest {
 		royalFlush.display();
 		royalFlush.displayAll();
 
+		//Tests for TWO HANDS comparisons
+		
+		
+		
 	}
 
 }
