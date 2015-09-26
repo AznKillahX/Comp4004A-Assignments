@@ -1,6 +1,8 @@
 package Assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Game {
@@ -113,21 +115,120 @@ public class Game {
 			if (firstPlay){
 				firstPlay = false;
 				displayAllHands();
+				compareAllHands();
+				rankAllHands();
 				replay = replayGame();
 			}
 			else{
 				deck = new Deck();
-				System.out.println(deck.getTotalCards());
 				initializePlayers(players.size(), deck);
 				displayAllHands();
+				compareAllHands();
+				rankAllHands();
 				replay = replayGame();
 			}
 		}
 		
 	}
 	
+	public void rankAllHands(){
+	    Collections.sort(players, new Comparator<Player>() {
+	        @Override public int compare(Player p1, Player p2) {
+	            return p1.getRanking() - p2.getRanking(); // Ascending
+	        }
+	    });
+	    
+	    Collections.reverse(players); //makes it descending order
+	    
+	    for (int i = 0; i < players.size(); i++){
+	    	System.out.println("Winners in Ascending Order: ");
+	    	System.out.println((i+1) + ": " + players.get(i).getID() + "\n"); 
+	    }
+	}
+	
 	public void compareAllHands(){
 		
+		// Only need to compare once and who ever wins gains 1 point in heads up
+		if (players.size() == 2){
+			if (players.get(0).getHand().compareTo(players.get(1).getHand()) == 1){
+				players.get(0).setRanking(0);
+			}
+			else if (players.get(0).getHand().compareTo(players.get(1).getHand()) == -1){
+				players.get(1).setRanking(1);
+			}
+		}
+		
+		// If there are Three players
+		if (players.size() == 3){
+			
+			//Player 1 comparisons 
+			if (players.get(0).getHand().compareTo(players.get(1).getHand()) == 1){
+				players.get(0).setRanking(players.get(0).getRanking() + 1);
+			}
+			else if (players.get(0).getHand().compareTo(players.get(1).getHand()) == -1){
+				players.get(1).setRanking(players.get(1).getRanking() + 1);
+			}				
+			if (players.get(0).getHand().compareTo(players.get(2).getHand()) == 1){
+				players.get(0).setRanking(players.get(0).getRanking() + 1);
+			}
+			else if (players.get(0).getHand().compareTo(players.get(2).getHand()) == -1){
+				players.get(2).setRanking(players.get(2).getRanking() + 1);
+			}
+			
+			//Player 2 comparisons
+			if (players.get(1).getHand().compareTo(players.get(2).getHand()) == 1){
+				players.get(1).setRanking(players.get(1).getRanking() + 1);
+			}
+			else if (players.get(1).getHand().compareTo(players.get(2).getHand()) == -1){
+				players.get(2).setRanking(players.get(2).getRanking() + 1);
+			}
+			
+		}
+		
+		//Number of players is 4
+		if (players.size() == 4){
+			
+			//Player 1 comparisons 
+			if (players.get(0).getHand().compareTo(players.get(1).getHand()) == 1){
+				players.get(0).setRanking(players.get(0).getRanking() + 1);
+			}
+			else if (players.get(0).getHand().compareTo(players.get(1).getHand()) == -1){
+				players.get(1).setRanking(players.get(1).getRanking() + 1);
+			}				
+			if (players.get(0).getHand().compareTo(players.get(2).getHand()) == 1){
+				players.get(0).setRanking(players.get(0).getRanking() + 1);
+			}
+			else if (players.get(0).getHand().compareTo(players.get(2).getHand()) == -1){
+				players.get(2).setRanking(players.get(2).getRanking() + 1);
+			}
+			if (players.get(0).getHand().compareTo(players.get(3).getHand()) == 1){
+				players.get(0).setRanking(players.get(0).getRanking() + 1);
+			}
+			else if (players.get(0).getHand().compareTo(players.get(3).getHand()) == -1){
+				players.get(3).setRanking(players.get(3).getRanking() + 1);
+			}
+			//Player 2 comparisons
+			if (players.get(1).getHand().compareTo(players.get(2).getHand()) == 1){
+				players.get(1).setRanking(players.get(1).getRanking() + 1);
+			}
+			else if (players.get(1).getHand().compareTo(players.get(2).getHand()) == -1){
+				players.get(2).setRanking(players.get(2).getRanking() + 1);
+			}
+			if (players.get(1).getHand().compareTo(players.get(3).getHand()) == 1){
+				players.get(1).setRanking(players.get(1).getRanking() + 1);
+			}
+			else if (players.get(1).getHand().compareTo(players.get(3).getHand()) == -1){
+				players.get(3).setRanking(players.get(3).getRanking() + 1);	
+			}
+			
+			//Player 3 comparisons
+			if (players.get(2).getHand().compareTo(players.get(3).getHand()) == 1){
+				players.get(2).setRanking(players.get(2).getRanking() + 1);
+			}
+			else if (players.get(2).getHand().compareTo(players.get(3).getHand()) == -1){
+				players.get(3).setRanking(players.get(3).getRanking() + 1);
+			}
+		}
 		
 	}
 	
