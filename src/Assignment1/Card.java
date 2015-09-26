@@ -4,10 +4,15 @@ public class Card
 {
     private int rank, suit;
     private static String[] suits = { "Hearts", "Spades", "Diamonds", "Clubs" };
-    private static String[] ranks  = { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+    private static String[] ranks  = { " ", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
 
     public static String rankAsString(int aRank) {
-        return ranks[aRank];
+    	if (aRank == 14){
+    		return ranks[1];
+    	}
+    	else{
+    		return ranks[aRank];
+    	}
     }
     
     //Constructor

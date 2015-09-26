@@ -11,9 +11,10 @@ public class GameTest {
 		
 		//Manual inputs as the origin class does not allow inputs less than 2 and greater than 4 for 
 		//number of players in the game
-		Game G1 = new Game(2);
-		Game G2 = new Game(3);
-		Game G3 = new Game(4);
+		Deck testDeck = new Deck();
+		Game G1 = new Game(2, testDeck);
+		Game G2 = new Game(3, testDeck);
+		Game G3 = new Game(4, testDeck);
 		
 		Player P1 = new Player("Player1");
 		Player P2 = new Player("Player2");

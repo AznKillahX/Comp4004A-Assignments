@@ -6,50 +6,51 @@ import java.util.Scanner;
 public class Game {
 
 	ArrayList<Player> players;
+	Scanner input;
 	int numPlayers = 0;
 	
 	public Game(){
+		input = new Scanner(System.in);
 		players = new ArrayList<Player>();
-		initializePlayers();
-		//initializeGame();
+		initializeGame();
+		input.close();
 	}
 	
-	public Game(int num){
+	public Game(int num, Deck d){
 		players = new ArrayList<Player>();
-		initializePlayers(num);
+		initializePlayers(num, d);
 	}
 	
 	public boolean replayGame(){
-		
-		Scanner input = new Scanner(System.in);
-		String continueGame = "";	
-		boolean validVariable = false;
+			
+		String continueGame;	
+		boolean invalidVariable = false;
 		boolean replay = false;
 
-		while (!validVariable){
+		while (!invalidVariable){
 			System.out.println("Do you wish to play a new hand with the same players? (Y/N)");
 			continueGame = input.next();
-
-			if (continueGame != "y" || continueGame != "Y"){
-				validVariable = true;
+			
+			if (continueGame.toUpperCase().equals("Y")){
 				replay = true;
-			}
-			if  (continueGame != "N" || continueGame != "n"){
-				validVariable = true;
+				invalidVariable = true;
+			}	
+			else if (continueGame.toUpperCase().equals("N")){
 				replay = false;
-				players.clear();
+				invalidVariable = true;
+				players.clear();	
+			}else if (!continueGame.toUpperCase().equals("Y") || !continueGame.toUpperCase().equals("N")){
+				invalidVariable = false;
 			}
 		}
-		
-		input.close();	
 		return replay;
 	}
 	
-	public void initializePlayers(){
-		
-		Scanner input = new Scanner(System.in);
+	public void initializePlayers(Deck d){
+
 		boolean validVariable = false;
 		numPlayers = 0;
+		players.clear();
 				
 		System.out.println("How many players do you wish to play with? (Min 2 Players, Max 4 Players)");
 		numPlayers = input.nextInt();
@@ -63,47 +64,78 @@ public class Game {
 				numPlayers = input.nextInt();
 			}
 		}
-		input.close();
 		
 		if (numPlayers == 2){
-			players.add(new Player("Player1"));
-			players.add(new Player("Player2"));
+			players.add(new Player("Player1", d));
+			players.add(new Player("Player2", d));
 		}
 		if (numPlayers == 3){
-			players.add(new Player("Player1"));
-			players.add(new Player("Player2"));
-			players.add(new Player("Player3"));
+			players.add(new Player("Player1", d));
+			players.add(new Player("Player2", d));
+			players.add(new Player("Player3", d));
 		}
 		if (numPlayers == 4){
-			players.add(new Player("Player1"));
-			players.add(new Player("Player2"));
-			players.add(new Player("Player3"));
-			players.add(new Player("Player4"));
+			players.add(new Player("Player1", d));
+			players.add(new Player("Player2", d));
+			players.add(new Player("Player3", d));
+			players.add(new Player("Player4", d));
 		}
 	}
 	
-	public void initializePlayers(int num){
+	public void initializePlayers(int num, Deck d){
+		players.clear();
 		if (num == 2){
-			players.add(new Player("Player1"));
-			players.add(new Player("Player2"));
+			players.add(new Player("Player1", d));
+			players.add(new Player("Player2", d));
 		}
 		if (num == 3){
-			players.add(new Player("Player1"));
-			players.add(new Player("Player2"));
-			players.add(new Player("Player3"));
+			players.add(new Player("Player1", d));
+			players.add(new Player("Player2", d));
+			players.add(new Player("Player3", d));
 		}
 		if (num == 4){
-			players.add(new Player("Player1"));
-			players.add(new Player("Player2"));
-			players.add(new Player("Player3"));
-			players.add(new Player("Player4"));
+			players.add(new Player("Player1", d));
+			players.add(new Player("Player2", d));
+			players.add(new Player("Player3", d));
+			players.add(new Player("Player4", d));
 		}
 	}
 	
 	public void initializeGame(){
 		
-		Deck deck= new Deck();
+		boolean replay = true;
+		boolean firstPlay = true;
+		Deck deck = new Deck();
+		initializePlayers(deck);
 		
+		while (replay){
+			
+			if (firstPlay){
+				firstPlay = false;
+				displayAllHands();
+				replay = replayGame();
+			}
+			else{
+				deck = new Deck();
+				System.out.println(deck.getTotalCards());
+				initializePlayers(players.size(), deck);
+				displayAllHands();
+				replay = replayGame();
+			}
+		}
+		
+	}
+	
+	public void compareAllHands(){
+		
+		
+	}
+	
+	public void displayAllHands(){
+		for (int i = 0; i < players.size(); i++){
+			players.get(i).getHand().display();
+			players.get(i).getHand().displayAll();
+		}
 	}
 	
 	public ArrayList<Player> getPlayerList(){ return players; }
