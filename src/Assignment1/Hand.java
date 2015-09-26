@@ -257,13 +257,13 @@ public class Hand {
 			default:
 				s="error in Hand.display: value[0] contains invalid value";
 		}
-		s = "				" + s;
-		System.out.println(s);
+		s = " " + s + " \n";
+		System.out.print(s);
 	}
 
 	public void displayAll() {
 		for (int x=0; x<5; x++)
-			System.out.println(cards[x]);
+			System.out.print(cards[x] + " ");
 	}
 
 	public int compareTo(Hand that){

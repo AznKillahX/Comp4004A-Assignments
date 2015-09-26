@@ -133,8 +133,10 @@ public class Game {
 	
 	public void displayAllHands(){
 		for (int i = 0; i < players.size(); i++){
+			System.out.print("\n" + players.get(i).getID() + ": Has");
 			players.get(i).getHand().display();
 			players.get(i).getHand().displayAll();
+			System.out.println("\n");
 		}
 	}
 	
