@@ -20,7 +20,7 @@ public class Game {
 	
 	public Game(int num, Deck d){
 		players = new ArrayList<Player>();
-		initializePlayers(num, d);
+		initializePlayers(num);
 	}
 	
 	public boolean replayGame(){
@@ -84,6 +84,27 @@ public class Game {
 		}
 	}
 	
+	//This method is used for hand comparison testing
+	public void initializePlayers(int num){
+		players.clear();
+		if (num == 2){
+			players.add(new Player("Player1"));
+			players.add(new Player("Player2"));
+		}
+		if (num == 3){
+			players.add(new Player("Player1"));
+			players.add(new Player("Player2"));
+			players.add(new Player("Player3"));
+		}
+		if (num == 4){
+			players.add(new Player("Player1"));
+			players.add(new Player("Player2"));
+			players.add(new Player("Player3"));
+			players.add(new Player("Player4"));
+		}
+	}
+	
+	
 	public void initializePlayers(int num, Deck d){
 		players.clear();
 		if (num == 2){
@@ -132,6 +153,7 @@ public class Game {
 	}
 	
 	public void rankAllHands(){
+		
 	    Collections.sort(players, new Comparator<Player>() {
 	        @Override public int compare(Player p1, Player p2) {
 	            return p1.getRanking() - p2.getRanking(); // Ascending
@@ -139,10 +161,34 @@ public class Game {
 	    });
 	    
 	    Collections.reverse(players); //makes it descending order
-	    
+	    	    
 	    System.out.println("Winners in Ascending Order: ");
+	    
+	    int rankNum = 1;
 	    for (int i = 0; i < players.size(); i++){
-	    	System.out.println((i+1) + ": " + players.get(i).getID() + "\n"); 
+	    	
+	    	if(i < players.size()-1 && players.size() != 2){
+	    		if (players.get(i).getRanking() != players.get(i+1).getRanking()){
+	    			System.out.println(rankNum + ": " + players.get(i).getID() + "\n");
+	    			rankNum++;
+	    		}
+	    		else{
+	    			System.out.println(rankNum + ": " + players.get(i).getID() + "\n");
+	    		}
+	    	}
+	    	else if (players.size() != 2){
+	    		System.out.println(rankNum + ": " + players.get(i).getID() + "\n");
+	    	}
+
+	    	if (players.size() == 2){
+	    		if (players.get(0).getRanking() != players.get(1).getRanking() && i < 1){
+	    			System.out.println(rankNum + ": " + players.get(i).getID() + "\n");
+	    			rankNum++;
+	    		}
+	    		else{
+	    			System.out.println(rankNum + ": " + players.get(i).getID() + "\n");
+	    		}
+	    	}
 	    }
 	}
 	
@@ -151,7 +197,7 @@ public class Game {
 		// Only need to compare once and who ever wins gains 1 point in heads up
 		if (players.size() == 2){
 			if (players.get(0).getHand().compareTo(players.get(1).getHand()) == 1){
-				players.get(0).setRanking(0);
+				players.get(0).setRanking(1);
 			}
 			else if (players.get(0).getHand().compareTo(players.get(1).getHand()) == -1){
 				players.get(1).setRanking(1);
@@ -229,7 +275,6 @@ public class Game {
 				players.get(3).setRanking(players.get(3).getRanking() + 1);
 			}
 		}
-		
 	}
 	
 	public void displayAllHands(){

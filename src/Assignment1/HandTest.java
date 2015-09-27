@@ -11,7 +11,9 @@ public class HandTest {
 		Card[] c = new Card[5];
 	
 		
-		// Tests for SINGLE HANDS only no comparisons made
+		// Tests for outputs of SINGLE HANDS only no comparisons made
+		
+		// High Card
 		c[0] = new Card(1,1);
 		c[1] = new Card(1,2);
 		c[2] = new Card(2,3);
