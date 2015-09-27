@@ -24,6 +24,7 @@ public class HandTest {
 		
 		highCard.display();
 		highCard.displayAll();
+		System.out.println("\n");
 		
 		//One Pair
 		c[0] = new Card(0,1);
@@ -36,6 +37,7 @@ public class HandTest {
 		
 		onePair.display();
 		onePair.displayAll();
+		System.out.println("\n");
 		
 		//Two Pairs Ace's and King's
 		c[0] = new Card(0,1);
@@ -48,6 +50,7 @@ public class HandTest {
 
 		twoPairs.display();
 		twoPairs.displayAll();
+		System.out.println("\n");
 		
 		//Three of a Kind
 		c[0] = new Card(0,1);
@@ -60,6 +63,7 @@ public class HandTest {
 
 		threeKind.display();
 		threeKind.displayAll();
+		System.out.println("\n");
 		
 		//Straight Aces High
 		c[0] = new Card(0,1);
@@ -72,6 +76,7 @@ public class HandTest {
 
 		straightAcesHigh.display();
 		straightAcesHigh.displayAll();
+		System.out.println("\n");
 
 		//Straight 1,2,3,4,5
 		c[0] = new Card(0,1);
@@ -84,6 +89,7 @@ public class HandTest {
 
 		straightFiveHigh.display();
 		straightFiveHigh.displayAll();
+		System.out.println("\n");
 		
 		//Full house Aces first
 		c[0] = new Card(0,1);
@@ -96,6 +102,7 @@ public class HandTest {
 		
 		fullHouseAceFirst.display();
 		fullHouseAceFirst.displayAll();
+		System.out.println("\n");
 		
 		//Full house Pairs first
 		c[0] = new Card(0,5);
@@ -108,6 +115,7 @@ public class HandTest {
 		
 		fullHousePairsFirst.display();
 		fullHousePairsFirst.displayAll();
+		System.out.println("\n");
 		
 		//Four of a Kind
 		c[0] = new Card(0,1);
@@ -120,6 +128,7 @@ public class HandTest {
 		
 		fourKind.display();
 		fourKind.displayAll();
+		System.out.println("\n");
 		
 		//Straight Flush 5 High 
 		c[0] = new Card(0,1);
@@ -132,6 +141,7 @@ public class HandTest {
 		
 		straightFlushFive.display();
 		straightFlushFive.displayAll();
+		System.out.println("\n");
 
 		//Royal Flush 
 		c[0] = new Card(0,10);
@@ -144,8 +154,7 @@ public class HandTest {
 
 		royalFlush.display();
 		royalFlush.displayAll();
-
-		//Tests for TWO HANDS comparisons
+		System.out.println("\n");
 		
 		
 		

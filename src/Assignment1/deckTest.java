@@ -51,4 +51,13 @@ public class deckTest {
 		 hand.display(); //show the summary of the hand, e.g. "full house"
 		 hand.displayAll(); //look at all the individual cards in the hand
 	}
+	
+	public void testRemove(){
+		Deck deck = new Deck();
+		deck.drawFromDeck(); // Draws 1 card
+		assertEquals(deck.getTotalCards(), 51);
+		Hand hand = new Hand(deck); // Draws 5 cards
+		assertEquals(deck.getTotalCards(), 46);
+	}
+	
 }
